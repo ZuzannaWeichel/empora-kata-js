@@ -1,0 +1,26 @@
+{
+  "name": "address-verification",
+  "version": "1.0.0",
+  "description": "This is a command-line program that validates a US address against the API",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZuzannaWeichel/empora-kata-js.git"
+  },
+  "author": "Zuzanna Weichel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZuzannaWeichel/empora-kata-js/issues"
+  },
+  "homepage": "https://github.com/ZuzannaWeichel/empora-kata-js#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "smartystreets-javascript-sdk": "^3.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
