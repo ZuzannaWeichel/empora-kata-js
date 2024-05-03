@@ -1,25 +1,24 @@
-const { handleResponse } = require("./src/addressVerification");
-const fs = require('fs');
-const csv = require('csv-parser');
-
-const SmartySDK = require("smartystreets-javascript-sdk");
-const SmartyCore = SmartySDK.core;
-const Lookup = SmartySDK.usStreet.Lookup;
-const InputAddress = require("./src/InputAddress")
+import 'dotenv/config';
+import fs from 'fs';
+import csv from 'csv-parser';
+import { isValidCSVrow } from './src/utils/validationHelper.js';
+import { invalidRowMessage, logError } from './src/utils/outputHelper.js';
+import { handleDataLookup } from './src/services/addressVerification.js';
 
 
 const args = process.argv ;
 
 fs.createReadStream(args[2])
-    .on('error', () => {
-        console.log("Please provide a valid csv file path")
+    .on('error', (e) => {
+        logError(e)
     })
     .pipe(csv())
     .on('data', (row) => {
-        const lookup = new InputAddress(row)
-        // console.log(lookup)
- 
-        handleResponse(lookup)
+        if(isValidCSVrow(row)){
+            handleDataLookup(row)
+        } else {
+            invalidRowMessage(row)
+        }
     })
     .on('end', () => {
         // handle end of CSV

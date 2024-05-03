@@ -1,6 +1,6 @@
-const Lookup = require("smartystreets-javascript-sdk/src/us_street/Lookup");
+import Lookup from "smartystreets-javascript-sdk/src/us_street/Lookup.js";
 
-class InputAddress extends Lookup{
+export default class InputAddress extends Lookup{
   constructor(inputData){
     super()
     
@@ -9,5 +9,3 @@ class InputAddress extends Lookup{
     this.zipCode = inputData["Zip Code"]
   }
 }
-
-module.exports = InputAddress

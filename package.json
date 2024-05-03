@@ -2,9 +2,10 @@
   "name": "address-verification",
   "version": "1.0.0",
   "description": "This is a command-line program that validates a US address against the API",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --setupFiles dotenv/config"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   "homepage": "https://github.com/ZuzannaWeichel/empora-kata-js#readme",
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
     "smartystreets-javascript-sdk": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.5",
     "jest": "^29.7.0"
   }
 }
