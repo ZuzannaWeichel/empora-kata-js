@@ -1,36 +1,36 @@
 import { invalidRowMessage, logError, printCorrectedAddress, printInvalidAddress } from '../../src/utils/outputHelper.js';
 
 describe('outputHelper', () => {
-  let logSpy
+  let logSpy;
   beforeEach(() =>{
     logSpy = jest.spyOn(global.console, 'log');
-  })
+  });
   afterEach(() =>{
     logSpy.mockRestore();
-  })
+  });
   describe('invalidRowMessage', ()=>{
     it('should print message and row', () => {
-      const rowNoZipCode = { Street: '143 e Maine Street', City: 'Columbus', State: 'OH' }
+      const rowNoZipCode = { Street: '143 e Maine Street', City: 'Columbus', State: 'OH' };
   
-      invalidRowMessage(rowNoZipCode)
+      invalidRowMessage(rowNoZipCode);
       
       expect(logSpy).toHaveBeenCalled();
       expect(logSpy).toHaveBeenCalledTimes(1);
-      expect(logSpy).toHaveBeenCalledWith("Invalid row", {"City": "Columbus", "State": "OH", "Street": "143 e Maine Street"})
-    })
-  })
+      expect(logSpy).toHaveBeenCalledWith("Invalid row", {"City": "Columbus", "State": "OH", "Street": "143 e Maine Street"});
+    });
+  });
 
   describe('logError', ()=>{
     it('should print error', () => {
-      const err = "some error"
+      const err = "some error";
   
-      logError(err)
+      logError(err);
       
       expect(logSpy).toHaveBeenCalled();
       expect(logSpy).toHaveBeenCalledTimes(1);
-      expect(logSpy).toHaveBeenCalledWith("Error", err)
-    })
-  })
+      expect(logSpy).toHaveBeenCalledWith("Error", err);
+    });
+  });
 
   describe('printCorrectedAddress', ()=>{
     it('should print corrected address', () => {
@@ -48,7 +48,7 @@ describe('outputHelper', () => {
         maxCandidates: undefined,
         inputId: undefined,
         result: [Array]
-      }
+      };
       const candidate =  {
         inputIndex: 0,
         candidateIndex: 0,
@@ -79,15 +79,15 @@ describe('outputHelper', () => {
           deliveryPoint: '99',
           deliveryPointCheckDigit: '2'
         }
-      }
+      };
 
-      printCorrectedAddress(lookup, candidate)
+      printCorrectedAddress(lookup, candidate);
       
       expect(logSpy).toHaveBeenCalled();
       expect(logSpy).toHaveBeenCalledTimes(1);
-      expect(logSpy).toHaveBeenCalledWith("143 e Maine Street, Columbus, 43215 ->  143 E Main St, Columbus, 43215-5370")
-    })
-  })
+      expect(logSpy).toHaveBeenCalledWith("143 e Maine Street, Columbus, 43215 ->  143 E Main St, Columbus, 43215-5370");
+    });
+  });
   describe('printInvalidAddress', ()=>{
     it('should print error', () => {
       const lookup =  {
@@ -104,13 +104,13 @@ describe('outputHelper', () => {
         maxCandidates: undefined,
         inputId: undefined,
         result: [Array]
-      }
+      };
 
-      printInvalidAddress(lookup)
+      printInvalidAddress(lookup);
       
       expect(logSpy).toHaveBeenCalled();
       expect(logSpy).toHaveBeenCalledTimes(1);
-      expect(logSpy).toHaveBeenCalledWith("1 Empora St, Title, 11111 ->  Invalid Address")
-    })
-  })
-})
+      expect(logSpy).toHaveBeenCalledWith("1 Empora St, Title, 11111 ->  Invalid Address");
+    });
+  });
+});

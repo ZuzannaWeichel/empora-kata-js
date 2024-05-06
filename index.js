@@ -6,20 +6,20 @@ import { invalidRowMessage, logError } from './src/utils/outputHelper.js';
 import { handleDataLookup } from './src/services/addressVerification.js';
 
 
-const args = process.argv ;
+const args = process.argv;
 
 fs.createReadStream(args[2])
     .on('error', (e) => {
-        logError(e)
+        logError(e);
     })
     .pipe(csv())
     .on('data', (row) => {
-        if(isValidCSVrow(row)){
-            handleDataLookup(row)
+        if (isValidCSVrow(row)){
+            handleDataLookup(row);
         } else {
-            invalidRowMessage(row)
+            invalidRowMessage(row);
         }
     })
     .on('end', () => {
         // handle end of CSV
-    })
+    });
